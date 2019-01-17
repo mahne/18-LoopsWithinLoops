@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Ethan Mahn.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,9 +80,28 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    for j in range(r+3):
+        for k in range(3):
+            o= rg.Circle(circle.center,circle.radius)
+            o.fill_color=circle.fill_color
+            o.center.x += (k+1)*2*o.radius
+            o.attach_to(window)
+            window.render(.1)
+        circle.center.y += 2*o.radius
+    circle.center.y -= 2 * o.radius
+    circle.center.x += 3*2 * o.radius
+    for j in range(3):
+        for k in range(c):
+            o= rg.Circle(circle.center,circle.radius)
+            o.fill_color=circle.fill_color
+            o.center.x += (k+1)*2*o.radius
+            o.attach_to(window)
+            window.render(.1)
+        circle.center.y -= 2*o.radius
+
 
 
 def run_test_draw_wall_on_right():
@@ -121,9 +140,16 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    for j in range(n):
+        for k in range(n-j):
+            box = rg.Rectangle(rectangle.get_upper_left_corner(),rectangle.get_lower_right_corner())
+            box.move_by(0,k*box.get_height())
+            box.attach_to(window)
+            window.render(.1)
+        rectangle.move_by(-rectangle.get_width(),rectangle.get_height())
 
 
 # ----------------------------------------------------------------------
